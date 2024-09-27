@@ -21,9 +21,9 @@ const main = async () => {
     console.log("~~SELAMAT DATANG DI SKYBANK~~")
     const nama = await bertanya('Masukkan nama Anda: '); // menunggu hasil function bertanya yang akan meminta input dari user
     const no_rek = await bertanya('Masukkan nomor rekening Anda: ');
-    const saldoAwal = parseFloat(await bertanya('Masukkan saldo awal: '));
+    const saldo = parseFloat(await bertanya('Masukkan saldo awal: '));
 
-    const akun = new BankAccount(nama, no_rek, saldoAwal); // membuat objek akun untuk BankAccount
+    const akun = new BankAccount(nama, no_rek, saldo); // membuat objek akun untuk BankAccount
     
     // function untuk user memilih opsi
     const pilihan = await bertanya('Pilih opsi berikut:\n1. Tambah Saldo\n2. Kurangi Saldo\n3. Tambah Bunga Bank (untuk rekening tabungan)\n');
@@ -47,7 +47,7 @@ const main = async () => {
     } else if (pilihan == 3) { // pilihan 3 untuk menghitung bunga bank berdasarkan suku bunga(%) dan jumlah bulan
         const suku_bunga = parseFloat(await bertanya('Masukkan suku bunga (%): ')); // parseFloat untuk mengkonversi string menjadi angka desimal
         const jmlh_bulan = parseInt(await bertanya('Masukkan jumlah bulan: ')); // parseInt untuk mengkonversi string menjadi angka bulat
-        const akunTabungan = new RekeningTabungan(nama, no_rek, saldoAwal, suku_bunga, jmlh_bulan); // membuat objek akunTabungan untuk RekeningTabungan
+        const akunTabungan = new RekeningTabungan(nama, no_rek, saldo, suku_bunga, jmlh_bulan); // membuat objek akunTabungan untuk RekeningTabungan
         akunTabungan.tambah_bunga_bank().then((message) => { // memanggil method tambah_bunga_bank untuk menghitung bunga bank
             console.log(message);
             userInput.close();
