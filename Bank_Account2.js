@@ -1,12 +1,18 @@
 /* Challange Chapter 2
-program ini berfungsi untuk mensimulasikan fitur dasar perbankan.
-fitur - fitur yang disediakan dalam program ini, yaitu penyetora, penarikan, dan penambahan bunga pada akun tabungan.
-program ini mendefinisikan dua kelas, yaitu BankAccount dan RekeningTabungan.
-class BankAccount digunakan untuk menyimpan data akun tabungan dan memiliki method deposit dan withdraw dari akun, 
-sedangkan class RekeningTabungan yang merupakan turunan dari class BankAccount digunakan untuk mengatur fitur-fitur yang terkait dengan akun tabungan.
-dalam class RekeningTabungan terdapat method tambah_bunga_bank untuk menambah bunga bank ke saldo akun berdasarkan suku bunga dan jumlah bulan.
-cara kerja: user membuat akun dengan menginput nama, no rekening, dan saldo awal. kemudian user diberi opsi 3 pilihan, pilihan 1 untuk deposit,
-pilihan 2 untuk withdraw/penarikan, dan pilihan 3 untuk menghitung bunga bank dengan mengisi suku bungan dan jumlah bulan.
+Program ini mensimulasikan fitur dasar perbankan, yaitu:
+1. Penyetoran (deposit)
+2. Penarikan (withdraw)
+3. Penambahan bunga pada akun tabungan.
+Program ini mendefinisikan dua class, yaitu class BankAccount dan class RekeningTabungan.
+1. BankAccount untuk menyimpan data akun tabungan. Memiliki metode deposit dan withdraw.
+2. RekeningTabungan untuk menyimpan data rekening tabungan. Memiliki metode tambah_bunga_bank berdasarkan suku bunga dan jumlah bulan.
+Cara kerja program:
+1. User membuat akun dengan memasukkan nama, rekening, dan saldo awal.
+2. User diberikan 3 opsi berikut:
+    a. Penyetoran (deposit)
+    b. Penarikan (withdraw)
+    c. Penambahan bunga pada akun tabungan dengan menginput suku bunga (%) dan jumlah bulan.
+3. Program akan menampilkan pesan yang sesuai dengan opsi pilihan user setelah 2 detik.
 */
 
 // class utama/ parent class
@@ -21,7 +27,7 @@ export class BankAccount {
 method ini mengambil parameter amount yaitu jumlah uang yang akan disetor */
 deposit(amount) {
     return new Promise((resolve) => {
-        setTimeout(() => { // proses ini memakan waktu selama 2 detik
+        setTimeout(() => { // menunda eksekusi selama 2 detik
             this.saldo += amount; // amount ditambahkan ke saldo user
             resolve(`~Akun ${this.nama} telah berhasil melakukan deposit sebesar ${amount}.\nSaldo Anda saat ini adalah ${this.saldo}`); // pesan yang ditampilkan setelah saldo ditambahkan
         }, 2000); 
@@ -32,7 +38,7 @@ deposit(amount) {
 method ini mengambil parameter amount yaitu jumlah yang ingin ditarik */
 withdraw(amount) {
     return new Promise((resolve, reject) => {
-        setTimeout(() => { // proses ini memakan waktu selama 2 detik
+        setTimeout(() => { // menunda eksekusi selama 2 detik
             if (amount > this.saldo) {
                 reject('~Maaf, saldo Anda tidak mencukupi untuk melakukan penarikan'); // jika saldo tidak cukup, pesan ini ditampilkan
             } else {
@@ -56,7 +62,7 @@ export class RekeningTabungan extends BankAccount {
     // method untuk menambahkan bunga ke saldo user berdasarkan perhitungan suku bunga dan jumlah bulan
     tambah_bunga_bank() {
         return new Promise((resolve) => {
-            setTimeout(() => { // proses ini memakan waktu selama 2 detik
+            setTimeout(() => { // menunda eksekusi selama 2 detik
                 const bunga_bank = this.saldo * (this.suku_bunga / 100) * (this.jmlh_bulan / 12); // rumus menghitung bunga
                 this.saldo += parseFloat(bunga_bank.toFixed(2)); // menambahkan saldo dengan hasil perhitungan bunga dengan ditetapkan 2 angka dibelakang koma
                 resolve(`~Bunga sebesar ${bunga_bank.toFixed(2)} telah ditambahkan ke akun ${this.nama}.\nSaldo Anda saat ini ${this.saldo}`);
