@@ -1,3 +1,4 @@
+// Janlankan file JS ini untuk menjalankan sistem bank.
 import { BankAccount, RekeningTabungan } from './Bank_Account2.js'; // mengimpor kelas BankAccount dan RekeningTabungan dari file Bank_Account2.js
 import readline from 'readline'; // untuk membaca input pengguna dari terminal
 
