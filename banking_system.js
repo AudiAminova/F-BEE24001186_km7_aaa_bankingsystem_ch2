@@ -11,7 +11,7 @@ const userInput = readline.createInterface({
 const bertanya = (pertanyaan) => {
     return new Promise((resolve) => {
         userInput.question(pertanyaan, (jawaban) => {
-            resolve(jawaban);
+        resolve(jawaban);
         });
     });
 };
@@ -23,7 +23,8 @@ const main = async () => {
     const no_rek = await bertanya('Masukkan nomor rekening Anda: ');
     const saldo = parseFloat(await bertanya('Masukkan saldo awal: '));
 
-    const akun = new BankAccount(nama, no_rek, saldo); // membuat objek akun untuk BankAccount
+    // membuat objek akun untuk BankAccount
+    const akun = new BankAccount(nama, no_rek, saldo);
     
     // function untuk user memilih opsi
     const pilihan = await bertanya('Pilih opsi berikut:\n1. Tambah Saldo\n2. Kurangi Saldo\n3. Tambah Bunga Bank (untuk rekening tabungan)\n');
